@@ -3,7 +3,8 @@
 import { motion } from "framer-motion";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { ExternalLink, Code, Wallet } from "lucide-react";
 
 const PROJECTS = [
@@ -70,15 +71,20 @@ export function Projects() {
                   </div>
                 </CardContent>
                 <CardFooter className="mt-auto pt-4">
-                  <Button className={`w-full sm:w-auto transition-colors ${
-                    project.color === 'violet'
-                      ? 'hover:bg-violet-600 hover:text-white'
-                      : 'hover:bg-emerald-600 hover:text-white'
-                  }`}>
-                    <a href={project.link} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
-                      View Project <ExternalLink className="w-4 h-4" />
-                    </a>
-                  </Button>
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={cn(
+                      buttonVariants(),
+                      "w-full sm:w-auto gap-2 transition-colors",
+                      project.color === "violet"
+                        ? "hover:bg-violet-600 hover:text-white"
+                        : "hover:bg-emerald-600 hover:text-white"
+                    )}
+                  >
+                    View Project <ExternalLink className="w-4 h-4" />
+                  </a>
                 </CardFooter>
               </Card>
             </motion.div>

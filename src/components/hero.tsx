@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { ArrowRight, Mail } from "lucide-react";
 
 export function Hero() {
@@ -20,8 +21,8 @@ export function Hero() {
         </div>
         
         <h1 className="text-4xl sm:text-5xl md:text-[3.5rem] leading-tight font-bold tracking-tight text-zinc-900 dark:text-white">
-          Hi, I'm{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-violet-600 dark:from-blue-400 dark:to-violet-400 whitespace-nowrap">
+          Hi, I&apos;m{" "}
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-violet-600 dark:from-blue-400 dark:to-violet-400 sm:whitespace-nowrap">
             Chris Wong Lihong.
           </span>
         </h1>
@@ -31,18 +32,26 @@ export function Hero() {
         </p>
         
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-          <Button size="lg" className="h-12 px-8 rounded-full text-base font-medium transition-all group w-full sm:w-auto">
-            <a href="#personal-projects" className="flex items-center">
-              View My Work
-              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-            </a>
-          </Button>
-          <Button size="lg" variant="outline" className="h-12 px-8 rounded-full text-base font-medium w-full sm:w-auto">
-            <a href="#contact" className="flex items-center">
-              <Mail className="mr-2 h-4 w-4" />
-              Contact Me
-            </a>
-          </Button>
+          <a
+            href="#personal-projects"
+            className={cn(
+              buttonVariants({ size: "lg" }),
+              "h-12 px-8 rounded-full text-base font-medium transition-all group w-full sm:w-auto"
+            )}
+          >
+            View My Work
+            <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+          </a>
+          <a
+            href="#contact"
+            className={cn(
+              buttonVariants({ size: "lg", variant: "outline" }),
+              "h-12 px-8 rounded-full text-base font-medium w-full sm:w-auto"
+            )}
+          >
+            <Mail className="mr-2 h-4 w-4" />
+            Contact Me
+          </a>
         </div>
       </motion.div>
     </section>

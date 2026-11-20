@@ -1,14 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
 
 export function AnimatedBackground() {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
-
-  if (!mounted) return null;
-
   return (
     <div className="fixed inset-0 -z-50 min-h-screen w-full pointer-events-none overflow-hidden bg-white dark:bg-black transition-colors duration-500">
       {/* Base Grid Pattern */}
