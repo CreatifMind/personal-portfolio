@@ -43,7 +43,8 @@ export function About() {
           <div className="lg:col-span-7 space-y-5 text-base text-muted-foreground leading-relaxed">
             <p>
               I&apos;m a Business Analytics graduate from{" "}
-              <span className="text-foreground font-medium">Sunway University</span> based in Selangor, Malaysia. My best work happens where messy real-world operations meet practical systems—whether that&apos;s replacing manual site-visit tracking with a Power Apps and Dataverse workflow, or wiring computer vision outputs into a live Power BI dashboard.
+              <span className="text-foreground font-medium">Sunway University</span>{" "}
+              based in Selangor, Malaysia. My best work happens where messy real-world operations meet practical systems—whether that&apos;s replacing manual site-visit tracking with a Power Apps and Dataverse workflow, or wiring computer vision outputs into a live Power BI dashboard.
             </p>
             <p>
               Before graduating, I spent a year studying in Tokyo and worked across international events and trade missions in Malaysia, Japan, and Thailand. Switching effortlessly between English, Mandarin, Malay, Japanese, and Thai taught me how to align stakeholders quickly and stay calm when plans change on the fly.

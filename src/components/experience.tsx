@@ -1,8 +1,6 @@
 "use client";
 
-import { useState } from "react";
 import { motion } from "framer-motion";
-import { ChevronDown, ChevronUp } from "lucide-react";
 
 interface ExperienceItem {
   role: string;
@@ -68,7 +66,7 @@ const CORE_EXPERIENCE: ExperienceItem[] = [
   },
 ];
 
-const EARLIER_EXPERIENCE: ExperienceItem[] = [
+const LEADERSHIP_EXPERIENCE: ExperienceItem[] = [
   {
     role: "Program Organizer",
     organization: "Japan & Malaysia Student Exchange",
@@ -76,15 +74,6 @@ const EARLIER_EXPERIENCE: ExperienceItem[] = [
     period: "Jul 2024",
     bullets: [
       "Planned cultural itineraries and provided live Japanese–English translation for visiting international student cohorts.",
-    ],
-  },
-  {
-    role: "Sales Executive",
-    organization: "Neo Siam Thai Specialty Store",
-    location: "Malaysia",
-    period: "Dec 2021 – Apr 2022",
-    bullets: [
-      "Handled daily revenue tracking, inventory controls, and direct customer sales for specialty Thai consumer goods.",
     ],
   },
   {
@@ -136,8 +125,6 @@ function ExperienceRow({ item }: { item: ExperienceItem }) {
 }
 
 export function Experience() {
-  const [showEarlier, setShowEarlier] = useState(false);
-
   return (
     <section id="experience" className="border-t border-border py-20 sm:py-24">
       <div className="mx-auto max-w-5xl px-6">
@@ -167,33 +154,22 @@ export function Experience() {
           ))}
         </motion.div>
 
-        <div className="mt-6">
-          <button
-            type="button"
-            onClick={() => setShowEarlier((prev) => !prev)}
-            className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-muted-foreground hover:text-foreground transition-colors py-2 cursor-pointer"
-          >
-            {showEarlier ? (
-              <>
-                Hide Earlier &amp; Leadership Experience
-                <ChevronUp className="h-4 w-4" />
-              </>
-            ) : (
-              <>
-                Show Earlier &amp; Leadership Experience ({EARLIER_EXPERIENCE.length})
-                <ChevronDown className="h-4 w-4" />
-              </>
-            )}
-          </button>
-
-          {showEarlier && (
-            <div className="mt-2 border-t border-border">
-              {EARLIER_EXPERIENCE.map((item) => (
-                <ExperienceRow key={`${item.organization}-${item.period}`} item={item} />
-              ))}
-            </div>
-          )}
-        </div>
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4 }}
+          className="mt-16"
+        >
+          <h3 className="text-xl sm:text-2xl font-semibold tracking-tight text-foreground mb-6">
+            Leadership Experience
+          </h3>
+          <div className="border-t border-border">
+            {LEADERSHIP_EXPERIENCE.map((item) => (
+              <ExperienceRow key={`${item.organization}-${item.period}`} item={item} />
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
   );
