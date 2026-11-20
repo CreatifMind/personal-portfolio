@@ -15,8 +15,21 @@ const geistMono = Geist_Mono({
 import { ThemeProvider } from "@/components/theme-provider"
 
 export const metadata: Metadata = {
-  title: "Chris Wong Lihong - Portfolio",
-  description: "Portfolio of Chris Wong Lihong, Business Analytics Student",
+  title: "Chris Wong Lihong — Business & Data Analyst",
+  description:
+    "Business Analytics graduate from Sunway University building BI dashboards, data pipelines, and operational systems across five languages.",
+  openGraph: {
+    title: "Chris Wong Lihong — Business & Data Analyst",
+    description:
+      "Business Analytics graduate building data systems, BI dashboards, and operational workflows across English, Mandarin, Malay, Japanese, and Thai.",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Chris Wong Lihong — Business & Data Analyst",
+    description:
+      "Business Analytics graduate building data systems, BI dashboards, and operational workflows.",
+  },
 };
 
 export default function RootLayout({

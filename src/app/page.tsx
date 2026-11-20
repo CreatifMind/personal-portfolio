@@ -1,23 +1,20 @@
 import { Hero } from "@/components/hero";
-import { About } from "@/components/about";
-import { Skills } from "@/components/skills";
-import { Experience } from "@/components/experience";
 import { Projects } from "@/components/projects";
+import { Experience } from "@/components/experience";
+import { Skills } from "@/components/skills";
+import { About } from "@/components/about";
 import { Contact } from "@/components/contact";
 import { Navbar } from "@/components/navbar";
-import { AnimatedBackground } from "@/components/animated-background";
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen font-sans selection:bg-blue-200 dark:selection:bg-blue-900 overflow-x-hidden">
-      <AnimatedBackground />
+    <main className="min-h-screen font-sans selection:bg-emerald-200/70 dark:selection:bg-emerald-900/70 overflow-x-hidden">
       <Navbar />
-
       <Hero />
-      <About />
-      <Skills />
-      <Experience />
       <Projects />
+      <Experience />
+      <Skills />
+      <About />
       <Contact />
     </main>
   );

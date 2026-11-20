@@ -3,55 +3,135 @@
 import { motion } from "framer-motion";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { ArrowRight, Mail } from "lucide-react";
+import { ArrowDownRight, FileText, Github, Linkedin, Mail } from "lucide-react";
+
+const QUICK_FACTS = [
+  {
+    label: "Education",
+    value: "B.A. Business Analytics",
+    detail: "Sunway University · 2026",
+  },
+  {
+    label: "Measured Impact",
+    value: "30–40% Faster Ops",
+    detail: "Power Apps & BI @ Rimbun Capital",
+  },
+  {
+    label: "Languages",
+    value: "5 Languages",
+    detail: "EN · ZH · MS · JA (N3) · TH",
+  },
+  {
+    label: "Focus",
+    value: "Analytics & Consulting",
+    detail: "Business, Data & Product Roles",
+  },
+];
 
 export function Hero() {
   return (
-    <section className="relative min-h-[90vh] flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 z-10">
+    <section className="mx-auto max-w-5xl px-6 pt-16 pb-20 sm:pt-24 sm:pb-24">
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="max-w-3xl space-y-8"
+        transition={{ duration: 0.45 }}
+        className="space-y-8"
       >
-        <div className="inline-block px-5 py-2 mb-4 border border-zinc-200 dark:border-zinc-800 rounded-full bg-zinc-50 dark:bg-zinc-900/50 shadow-sm">
-          <span className="text-base font-medium tracking-tight text-zinc-900 dark:text-zinc-100">
-            Available for opportunities
-          </span>
+        <div className="inline-flex items-center gap-2.5 font-mono text-xs uppercase tracking-wider text-muted-foreground">
+          <span className="h-2 w-2 rounded-full bg-emerald-600 dark:bg-emerald-400" />
+          <span>Open to Analyst &amp; Consulting Roles · Malaysia / APAC</span>
         </div>
-        
-        <h1 className="text-4xl sm:text-5xl md:text-[3.5rem] leading-tight font-bold tracking-tight text-zinc-900 dark:text-white">
-          Hi, I&apos;m{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-violet-600 dark:from-blue-400 dark:to-violet-400 sm:whitespace-nowrap">
-            Chris Wong Lihong.
-          </span>
-        </h1>
-        
-        <p className="text-xl sm:text-2xl text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto leading-relaxed">
-          A final year Business Analytics student transforming complex data into actionable insights while working on personal side projects for fun.
-        </p>
-        
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+
+        <div className="space-y-5 max-w-3xl">
+          <h1 className="text-4xl sm:text-5xl md:text-[3.4rem] font-semibold tracking-tight leading-[1.1] text-foreground">
+            Chris Wong Lihong
+          </h1>
+          <p className="text-xl sm:text-2xl text-muted-foreground leading-relaxed font-normal">
+            Business Analytics graduate who turns messy operational data into{" "}
+            <span className="text-foreground">BI dashboards</span>,{" "}
+            <span className="text-foreground">automated workflows</span>, and{" "}
+            <span className="text-foreground">clear business decisions</span>—working fluently across five languages.
+          </p>
+        </div>
+
+        <div className="flex flex-wrap items-center gap-3 pt-1">
           <a
-            href="#personal-projects"
+            href="#work"
             className={cn(
               buttonVariants({ size: "lg" }),
-              "h-12 px-8 rounded-full text-base font-medium transition-all group w-full sm:w-auto"
+              "h-11 px-6 rounded-md text-sm font-medium gap-2"
             )}
           >
-            View My Work
-            <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+            Selected Work
+            <ArrowDownRight className="h-4 w-4" />
           </a>
+
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={cn(
+              buttonVariants({ size: "lg", variant: "outline" }),
+              "h-11 px-5 rounded-md text-sm font-medium gap-2"
+            )}
+          >
+            <FileText className="h-4 w-4" />
+            Resume (PDF)
+          </a>
+
           <a
             href="#contact"
             className={cn(
-              buttonVariants({ size: "lg", variant: "outline" }),
-              "h-12 px-8 rounded-full text-base font-medium w-full sm:w-auto"
+              buttonVariants({ size: "lg", variant: "ghost" }),
+              "h-11 px-4 rounded-md text-sm font-medium gap-2 text-muted-foreground hover:text-foreground"
             )}
           >
-            <Mail className="mr-2 h-4 w-4" />
-            Contact Me
+            <Mail className="h-4 w-4" />
+            Contact
           </a>
+
+          <div className="flex items-center gap-1 sm:ml-auto">
+            <a
+              href="https://www.linkedin.com/in/chriswonglihong/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              className={cn(
+                buttonVariants({ size: "icon", variant: "ghost" }),
+                "h-9 w-9 text-muted-foreground hover:text-foreground"
+              )}
+            >
+              <Linkedin className="h-4 w-4" />
+            </a>
+            <a
+              href="https://github.com/CreatifMind"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+              className={cn(
+                buttonVariants({ size: "icon", variant: "ghost" }),
+                "h-9 w-9 text-muted-foreground hover:text-foreground"
+              )}
+            >
+              <Github className="h-4 w-4" />
+            </a>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-t border-b border-border divide-y sm:divide-y-0 sm:divide-x divide-border mt-12">
+          {QUICK_FACTS.map((fact) => (
+            <div key={fact.label} className="py-5 sm:px-5 first:sm:pl-0 last:sm:pr-0">
+              <p className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
+                {fact.label}
+              </p>
+              <p className="mt-1.5 text-sm font-semibold text-foreground">
+                {fact.value}
+              </p>
+              <p className="mt-0.5 text-xs text-muted-foreground">
+                {fact.detail}
+              </p>
+            </div>
+          ))}
         </div>
       </motion.div>
     </section>

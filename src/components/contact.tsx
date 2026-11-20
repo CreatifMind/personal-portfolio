@@ -3,11 +3,8 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button, buttonVariants } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
-import { Mail, MessageSquare, User, Send, Github, Linkedin, ArrowUp, Copy, Check } from "lucide-react";
+import { ArrowUp, Check, Copy, Github, Linkedin, Mail } from "lucide-react";
 
 const EMAIL = "chriswonglihong@gmail.com";
 
@@ -20,140 +17,105 @@ export function Contact() {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      // Fallback ignored if clipboard permission denied
+      // Ignore if clipboard access is unavailable
     }
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const name = String(formData.get("name") ?? "");
-    const email = String(formData.get("email") ?? "");
-    const message = String(formData.get("message") ?? "");
-    
-    const subject = encodeURIComponent(`Portfolio Contact Form Message from ${name}`);
-    const body = encodeURIComponent(
-      `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
-    );
-    window.location.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`;
-  };
-
   return (
-    <section id="contact" className="relative pt-24 border-t border-zinc-200/50 dark:border-zinc-800/50 bg-white/10 dark:bg-black/10 backdrop-blur-sm z-10">
-      <div className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 mb-24">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="space-y-8"
-          >
-            <div>
-              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4">Get In Touch</h2>
-              <p className="text-lg text-zinc-600 dark:text-zinc-400">
-                Have a question or want to work together? I&apos;m currently open to new opportunities and collaborations. Drop me a message below.
-              </p>
-            </div>
+    <section id="contact" className="border-t border-border">
+      <div className="mx-auto max-w-5xl px-6 py-20 sm:py-24">
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4 }}
+          className="space-y-6 max-w-2xl"
+        >
+          <p className="font-mono text-xs uppercase tracking-wider text-emerald-700 dark:text-emerald-400">
+            05 / Contact
+          </p>
+          <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-foreground">
+            Let&apos;s work together.
+          </h2>
+          <p className="text-base text-muted-foreground leading-relaxed">
+            Currently open to Business Analyst, Data Analyst, Product/Tech Analyst, and Consulting roles. The fastest way to reach me is by email.
+          </p>
 
-            <div className="space-y-4">
-              <div className="flex flex-wrap items-center gap-3">
-                <a href={`mailto:${EMAIL}`} className="flex items-center gap-4 text-zinc-600 dark:text-zinc-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors group">
-                  <div className="w-12 h-12 flex items-center justify-center rounded-full bg-zinc-100 dark:bg-zinc-800 group-hover:bg-blue-100 dark:group-hover:bg-blue-900/50 shrink-0">
-                    <Mail className="w-5 h-5" />
-                  </div>
-                  <span className="text-lg font-medium break-all">{EMAIL}</span>
-                </a>
-                <Button
-                  type="button"
-                  variant="outline"
-                  size="sm"
-                  onClick={handleCopyEmail}
-                  className="rounded-full gap-1.5"
-                >
-                  {copied ? (
-                    <>
-                      <Check className="w-3.5 h-3.5 text-emerald-500" />
-                      Copied
-                    </>
-                  ) : (
-                    <>
-                      <Copy className="w-3.5 h-3.5" />
-                      Copy
-                    </>
-                  )}
-                </Button>
-              </div>
-            </div>
-          </motion.div>
+          <div className="flex flex-wrap items-center gap-3 pt-2">
+            <a
+              href={`mailto:${EMAIL}`}
+              className={cn(
+                buttonVariants({ size: "lg" }),
+                "h-11 px-5 rounded-md text-sm font-medium gap-2"
+              )}
+            >
+              <Mail className="h-4 w-4" />
+              {EMAIL}
+            </a>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="bg-white dark:bg-zinc-900/50 p-8 rounded-3xl border border-zinc-200 dark:border-zinc-800 shadow-xl shadow-zinc-200/50 dark:shadow-none"
-          >
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="space-y-2">
-                <Label htmlFor="name" className="text-zinc-700 dark:text-zinc-300">Name</Label>
-                <div className="relative">
-                  <User className="absolute left-3 top-3 h-5 w-5 text-zinc-400" />
-                  <Input id="name" name="name" placeholder="John Doe" className="pl-10 h-12 bg-zinc-50 dark:bg-zinc-800/50 border-zinc-200 dark:border-zinc-700 focus-visible:ring-blue-500" required />
-                </div>
-              </div>
-              
-              <div className="space-y-2">
-                <Label htmlFor="email" className="text-zinc-700 dark:text-zinc-300">Email Address</Label>
-                <div className="relative">
-                  <Mail className="absolute left-3 top-3 h-5 w-5 text-zinc-400" />
-                  <Input id="email" name="email" type="email" placeholder="john@example.com" className="pl-10 h-12 bg-zinc-50 dark:bg-zinc-800/50 border-zinc-200 dark:border-zinc-700 focus-visible:ring-blue-500" required />
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="message" className="text-zinc-700 dark:text-zinc-300">Message</Label>
-                <div className="relative">
-                  <MessageSquare className="absolute left-3 top-3 h-5 w-5 text-zinc-400" />
-                  <Textarea id="message" name="message" placeholder="How can I help you?" className="pl-10 min-h-[120px] resize-none bg-zinc-50 dark:bg-zinc-800/50 border-zinc-200 dark:border-zinc-700 focus-visible:ring-blue-500 pt-3" required />
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <Button type="submit" className="w-full h-12 text-base font-medium rounded-xl gap-2 bg-zinc-900 hover:bg-zinc-800 dark:bg-white dark:hover:bg-zinc-200 dark:text-zinc-900 transition-colors">
-                  Open in Email App <Send className="w-4 h-4" />
-                </Button>
-                <p className="text-xs text-center text-zinc-500 dark:text-zinc-400">
-                  Opens your default email client, or use the copy button on the left.
-                </p>
-              </div>
-            </form>
-          </motion.div>
-        </div>
+            <Button
+              type="button"
+              variant="outline"
+              size="lg"
+              onClick={handleCopyEmail}
+              className="h-11 px-4 rounded-md text-sm font-medium gap-2"
+            >
+              {copied ? (
+                <>
+                  <Check className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+                  Copied
+                </>
+              ) : (
+                <>
+                  <Copy className="h-4 w-4" />
+                  Copy Email
+                </>
+              )}
+            </Button>
+          </div>
+        </motion.div>
       </div>
 
-      <footer className="border-t border-zinc-200/50 dark:border-zinc-800/50 py-8 px-4 sm:px-6 lg:px-8 bg-white/10 dark:bg-zinc-900/20 backdrop-blur-sm relative z-10">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-zinc-500 dark:text-zinc-400 text-sm font-medium">
-            © 2026 Chris Wong Lihong. All rights reserved.
+      <footer className="border-t border-border">
+        <div className="mx-auto max-w-5xl px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="font-mono text-xs text-muted-foreground">
+            © 2026 Chris Wong Lihong
           </p>
-          <div className="flex items-center gap-4">
-            <a href="https://www.linkedin.com/in/chriswonglihong/" target="_blank" rel="noopener noreferrer" className="p-2 text-zinc-500 hover:text-blue-600 dark:text-zinc-400 dark:hover:text-blue-400 transition-colors bg-white dark:bg-zinc-800 rounded-full shadow-sm hover:shadow dark:shadow-none border border-zinc-200 dark:border-zinc-700">
-              <span className="sr-only">LinkedIn</span>
-              <Linkedin className="w-5 h-5" />
+
+          <div className="flex items-center gap-3">
+            <a
+              href="https://www.linkedin.com/in/chriswonglihong/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              className={cn(
+                buttonVariants({ variant: "ghost", size: "icon" }),
+                "h-9 w-9 text-muted-foreground hover:text-foreground"
+              )}
+            >
+              <Linkedin className="h-4 w-4" />
             </a>
-            <a href="https://github.com/CreatifMind" target="_blank" rel="noopener noreferrer" className="p-2 text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors bg-white dark:bg-zinc-800 rounded-full shadow-sm hover:shadow dark:shadow-none border border-zinc-200 dark:border-zinc-700">
-              <span className="sr-only">GitHub</span>
-              <Github className="w-5 h-5" />
+            <a
+              href="https://github.com/CreatifMind"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+              className={cn(
+                buttonVariants({ variant: "ghost", size: "icon" }),
+                "h-9 w-9 text-muted-foreground hover:text-foreground"
+              )}
+            >
+              <Github className="h-4 w-4" />
             </a>
             <a
               href="#"
               aria-label="Back to top"
               className={cn(
-                buttonVariants({ variant: "ghost", size: "icon" }),
-                "rounded-full w-10 h-10 border border-zinc-200 dark:border-zinc-700 ml-2 hidden sm:inline-flex"
+                buttonVariants({ variant: "outline", size: "icon" }),
+                "h-9 w-9 rounded-full ml-2"
               )}
             >
-              <ArrowUp className="w-4 h-4" />
+              <ArrowUp className="h-4 w-4" />
             </a>
           </div>
         </div>

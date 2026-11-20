@@ -1,141 +1,198 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
-import { Calendar } from "lucide-react";
+import { ChevronDown, ChevronUp } from "lucide-react";
 
-export function Experience() {
-  const experiences = [
-    {
-      title: "Internship at Rimbun Capital",
-      role: "Technical Business Analyst Intern",
-      period: "Jan 2026 – April 2026",
-      details: [
-        "Architected and deployed a centralized data collection system utilizing Power Apps and Codex.",
-        "Leveraged advanced AI prompt engineering to accelerate data analysis and support creative problem-solving.",
-        "Aggregated and analyzed internal company data to deliver actionable insights and strategic business recommendations.",
-        "Streamlined internal operations and automated manual processes, increasing overall workflow efficiency by 30-40%.",
-        "Authored comprehensive user documentation and training guidelines to ensure seamless adoption and long-term system sustainability."
-      ],
-      highlight: true
-    },
-    {
-      title: "Event and Stage Management at Japan Expo Malaysia",
-      role: "Stage Manager & Coordinator",
-      period: "Aug 2023 – July 2025",
-      details: [
-        "Orchestrated seamless end-to-end stage operations across 4+ major international expos including Japan Expo Malaysia, Japan Expo Thailand, and Amazing Senior.",
-        "Facilitated successful cross-language communications, providing real-time translation between Thai, Japanese, English, and Mandarin for high-profile international guests and logistics."
-      ],
-      highlight: true
-    },
-    {
-      title: "Japan and Malaysia Student Exchange",
-      role: "Program Organizer",
-      period: "July 2024",
-      details: [
-        "Engineered cross-cultural exchange programs by planning comprehensive itineraries and promoting local heritage.",
-        "Facilitated direct, extensive translation linking international students to foster robust bilateral relationships."
-      ],
-      highlight: true
-    },
-    {
-      title: "EV Connection Sdn Bhd",
-      role: "Marketing Intern",
-      period: "July 2023 – Sept 2023",
-      details: [
-        "Spearheaded digital marketing initiatives and copy creation across diverse social platforms.",
-        "Managed corporate event logistics and directly accelerated B2B sales cycles for EV charger solutions through active client engagement."
-      ],
-      highlight: true
-    },
-    {
-      title: "Up-Front International Co., Ltd (Japan)",
-      role: "Social Media Intern",
-      period: "April 2022 – May 2024",
-      details: [
-        "Engineered global promotional campaigns on Google Ads to boost concert event attendance and ticket sales.",
-        "Delivered critical multi-lingual translations (Japanese, English, Mandarin) for PR content and supported large-scale entertainment event planning."
-      ],
-      highlight: true
-    },
-    {
-      title: "MATRADE (Tokyo, Japan)",
-      role: "Official Representative & Liaison",
-      period: "May 2022 – Sept 2022",
-      details: [
-        "Acted as a key diplomatic and commercial liaison during the Tokyo Games Show 2022 and Official Prime Minister Meet & Greet.",
-        "Orchestrated VIP guest logistics, strategic document distribution, and real-time multi-lingual translations to promote Malaysian business interests abroad."
-      ],
-      highlight: true
-    },
-    {
-      title: "Neo Siam Thai Specialty Store",
-      role: "Sales Executive",
-      period: "Dec 2021 – April 2022",
-      details: [
-        "Managed daily operational revenue, maintained rigorous inventory tracking protocols, and successfully pitched specialized consumer products to expand customer base."
-      ],
-      highlight: true
-    }
-  ];
+interface ExperienceItem {
+  role: string;
+  organization: string;
+  location: string;
+  period: string;
+  bullets: string[];
+  featured?: boolean;
+}
 
+const CORE_EXPERIENCE: ExperienceItem[] = [
+  {
+    role: "Technical Business Analyst Intern",
+    organization: "Rimbun Capital Sdn Bhd",
+    location: "Kuala Lumpur, Malaysia",
+    period: "Jan 2026 – Apr 2026",
+    featured: true,
+    bullets: [
+      "Designed and deployed a Power Apps site-visit and data collection system backed by Dataverse schemas and automated workflows, improving internal workflow efficiency by 30–40%.",
+      "Translated stakeholder feedback and internal operational data into management BI dashboards and strategic recommendations.",
+      "Built custom GPT configurations to automate synthesis of liquidation and corporate recovery documentation, paired with user training guides for long-term adoption.",
+    ],
+  },
+  {
+    role: "Stage Manager & Coordinator",
+    organization: "Japan Expo Malaysia, Japan Expo Thailand & Amazing Senior",
+    location: "Kuala Lumpur & Bangkok",
+    period: "Aug 2023 – Jul 2025",
+    bullets: [
+      "Managed live stage schedules, crowd flow, and on-the-spot issue resolution across 4+ major international expos in Malaysia and Thailand.",
+      "Provided real-time interpretation across Thai, Japanese, English, and Mandarin for international talent, VIPs, and production crews.",
+    ],
+  },
+  {
+    role: "Social Media Intern",
+    organization: "Up-Front International Co., Ltd",
+    location: "Tokyo, Japan",
+    period: "Apr 2022 – May 2024",
+    bullets: [
+      "Managed Google Ads promotional campaigns to drive international concert attendance and ticket sales.",
+      "Translated PR materials and social campaigns across Japanese, English, and Mandarin while supporting live event operations.",
+    ],
+  },
+  {
+    role: "Marketing Intern",
+    organization: "EV Connection Sdn Bhd",
+    location: "Malaysia",
+    period: "Jul 2023 – Sep 2023",
+    bullets: [
+      "Ran social media channels, copywriting, and corporate event logistics for EV charging campaigns.",
+      "Engaged prospective B2B clients directly to support and close EV charger sales.",
+    ],
+  },
+  {
+    role: "Official Representative & Liaison",
+    organization: "MATRADE",
+    location: "Tokyo, Japan",
+    period: "May 2022 – Sep 2022",
+    bullets: [
+      "Represented Malaysian exhibitors at Tokyo Game Show 2022, translating between English, Malay, Mandarin, and Japanese for prospective partners.",
+      "Supported VIP guest logistics and protocol during the Malaysian Prime Minister's Official Visit and business Meet & Greet in Tokyo.",
+    ],
+  },
+];
+
+const EARLIER_EXPERIENCE: ExperienceItem[] = [
+  {
+    role: "Program Organizer",
+    organization: "Japan & Malaysia Student Exchange",
+    location: "Kuala Lumpur, Malaysia",
+    period: "Jul 2024",
+    bullets: [
+      "Planned cultural itineraries and provided live Japanese–English translation for visiting international student cohorts.",
+    ],
+  },
+  {
+    role: "Sales Executive",
+    organization: "Neo Siam Thai Specialty Store",
+    location: "Malaysia",
+    period: "Dec 2021 – Apr 2022",
+    bullets: [
+      "Handled daily revenue tracking, inventory controls, and direct customer sales for specialty Thai consumer goods.",
+    ],
+  },
+  {
+    role: "President",
+    organization: "12th Kuala Lumpur Boys' Brigade Company",
+    location: "Kuala Lumpur, Malaysia",
+    period: "Nov 2017 – Dec 2020",
+    bullets: [
+      "Led a 300-member youth organization, overseeing weekly operations, leadership training, and external community events.",
+    ],
+  },
+];
+
+function ExperienceRow({ item }: { item: ExperienceItem }) {
   return (
-    <section id="experience" className="py-24 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
-      <div className="space-y-4 mb-16">
-        <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">Experience</h2>
-        <div className="w-20 h-1 bg-gradient-to-r from-blue-600 to-violet-600 rounded-full" />
+    <div className="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-8 py-7 border-b border-border last:border-b-0">
+      <div className="md:col-span-4 space-y-1">
+        <p className="font-mono text-xs text-muted-foreground">{item.period}</p>
+        <p className="text-xs text-muted-foreground">{item.location}</p>
+        {item.featured && (
+          <span className="inline-block mt-2 rounded border border-emerald-600/30 bg-emerald-500/10 px-2 py-0.5 font-mono text-[11px] text-emerald-700 dark:text-emerald-400">
+            Most Recent · Analytics
+          </span>
+        )}
       </div>
 
-      <div className="relative">
-        {/* Timeline Line */}
-        <div className="absolute top-0 bottom-0 left-[27px] w-0.5 bg-zinc-200 dark:bg-zinc-800 z-0" />
-        
-        {/* Scrollable Container */}
-        <div className="space-y-8 pl-[60px] sm:pl-[80px] max-h-[700px] overflow-y-auto pr-4 sm:pr-6 scrollbar-thin scrollbar-thumb-zinc-300 dark:scrollbar-thumb-zinc-700" style={{ scrollbarWidth: 'thin' }}>
-          {experiences.map((exp, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-              className="relative"
+      <div className="md:col-span-8 space-y-3">
+        <div>
+          <h3 className="text-base sm:text-lg font-semibold text-foreground leading-snug">
+            {item.role}
+          </h3>
+          <p className="text-sm text-muted-foreground">{item.organization}</p>
+        </div>
+
+        <ul className="space-y-2">
+          {item.bullets.map((bullet) => (
+            <li
+              key={bullet}
+              className="text-sm text-muted-foreground leading-relaxed flex items-start gap-2.5"
             >
-              {/* Timeline Dot */}
-              <div className="absolute -left-[50px] sm:-left-[70px] top-6 w-5 h-5 rounded-full border-4 border-white dark:border-black bg-zinc-300 dark:bg-zinc-600 z-10 shadow-sm" />
-              
-              <Card className={`relative overflow-hidden border-zinc-200/50 dark:border-zinc-800/50 shadow-sm backdrop-blur-md ${exp.highlight ? 'bg-white/80 dark:bg-zinc-900/80 ring-1 ring-blue-500/30' : 'bg-white/40 dark:bg-zinc-900/40 hover:bg-white/60 dark:hover:bg-zinc-900/60 transition-colors'}`}>
-                {exp.highlight && (
-                  <div className="absolute top-0 left-0 w-1 h-full bg-blue-600 dark:bg-blue-500" />
-                )}
-                <CardHeader className="pb-3 pt-6">
-                  <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
-                    <div className="space-y-1">
-                      <CardTitle className="text-xl leading-tight">{exp.title}</CardTitle>
-                      <CardDescription className="text-[15px] font-medium text-zinc-700 dark:text-zinc-300">
-                        {exp.role}
-                      </CardDescription>
-                    </div>
-                    <div className="flex items-center gap-1.5 text-zinc-600 dark:text-zinc-400 bg-zinc-100/80 dark:bg-zinc-800/80 px-2.5 py-1 rounded-md text-sm font-medium w-fit shrink-0 backdrop-blur-sm">
-                      <Calendar className="w-3.5 h-3.5" />
-                      {exp.period}
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-2 text-zinc-600 dark:text-zinc-400 text-sm">
-                    {exp.details.map((detail, dIndex) => (
-                      <li key={dIndex} className="flex items-start">
-                        <span className={`mr-2.5 flex-shrink-0 text-[15px] mt-0.5 leading-none ${exp.highlight ? 'text-blue-500' : 'text-zinc-400'}`}>•</span>
-                        <span className="leading-relaxed">{detail}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
-            </motion.div>
+              <span className="text-emerald-600 dark:text-emerald-400 mt-1.5 h-1.5 w-1.5 rounded-full bg-current shrink-0" />
+              <span>{bullet}</span>
+            </li>
           ))}
+        </ul>
+      </div>
+    </div>
+  );
+}
+
+export function Experience() {
+  const [showEarlier, setShowEarlier] = useState(false);
+
+  return (
+    <section id="experience" className="border-t border-border py-20 sm:py-24">
+      <div className="mx-auto max-w-5xl px-6">
+        <div className="mb-10 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p className="font-mono text-xs uppercase tracking-wider text-emerald-700 dark:text-emerald-400">
+              02 / Experience
+            </p>
+            <h2 className="mt-2 text-2xl sm:text-3xl font-semibold tracking-tight text-foreground">
+              Work &amp; International Ops
+            </h2>
+          </div>
+          <p className="text-sm text-muted-foreground max-w-sm">
+            From internal BI &amp; Power Apps delivery to cross-border events in Malaysia, Japan, and Thailand.
+          </p>
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4 }}
+          className="border-t border-border"
+        >
+          {CORE_EXPERIENCE.map((item) => (
+            <ExperienceRow key={`${item.organization}-${item.period}`} item={item} />
+          ))}
+        </motion.div>
+
+        <div className="mt-6">
+          <button
+            type="button"
+            onClick={() => setShowEarlier((prev) => !prev)}
+            className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-muted-foreground hover:text-foreground transition-colors py-2 cursor-pointer"
+          >
+            {showEarlier ? (
+              <>
+                Hide Earlier &amp; Leadership Experience
+                <ChevronUp className="h-4 w-4" />
+              </>
+            ) : (
+              <>
+                Show Earlier &amp; Leadership Experience ({EARLIER_EXPERIENCE.length})
+                <ChevronDown className="h-4 w-4" />
+              </>
+            )}
+          </button>
+
+          {showEarlier && (
+            <div className="mt-2 border-t border-border">
+              {EARLIER_EXPERIENCE.map((item) => (
+                <ExperienceRow key={`${item.organization}-${item.period}`} item={item} />
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </section>
