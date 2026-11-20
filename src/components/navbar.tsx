@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { ModeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
@@ -15,6 +16,16 @@ const NAV_LINKS = [
 
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolledPastHero, setScrolledPastHero] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolledPastHero(window.scrollY > 180);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <header className="sticky top-0 z-50 border-b border-border/80 bg-background/85 backdrop-blur-md">
@@ -25,9 +36,33 @@ export function Navbar() {
         <a
           href="#"
           onClick={() => setMobileMenuOpen(false)}
-          className="text-base font-semibold tracking-tight text-foreground"
+          className="relative flex h-6 items-center overflow-hidden"
         >
-          Chris Wong<span className="text-emerald-600 dark:text-emerald-400">.</span>
+          <AnimatePresence mode="wait" initial={false}>
+            {scrolledPastHero ? (
+              <motion.span
+                key="name"
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: 0.18 }}
+                className="text-base font-semibold tracking-tight text-foreground"
+              >
+                Chris Wong<span className="text-emerald-600 dark:text-emerald-400">.</span>
+              </motion.span>
+            ) : (
+              <motion.span
+                key="portfolio"
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: 0.18 }}
+                className="font-mono text-xs uppercase tracking-wider text-muted-foreground"
+              >
+                Portfolio <span className="text-emerald-600 dark:text-emerald-400">/</span> 2026
+              </motion.span>
+            )}
+          </AnimatePresence>
         </a>
 
         <div className="flex items-center gap-3 md:gap-7">
