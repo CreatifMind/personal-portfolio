@@ -16,17 +16,18 @@ interface Project {
 
 const PROJECTS: Project[] = [
   {
-    title: "Automated Waste Classification & Contamination Detection",
+    title: "PurityLoop AI — Automated Waste Classification & Contamination Detection",
     category: "Capstone Project · Computer Vision & BI",
     year: "2026",
     summary:
-      "End-to-end computer vision and analytics system designed to detect recycling contamination in real time and surface operational ESG metrics to facility teams.",
+      "End-to-end computer vision and analytics system designed to automate waste sorting, detect recycling contamination in real time, and surface operational ESG metrics to facility teams.",
     highlights: [
       "Trained and optimised a real-time YOLOv8m-seg instance segmentation model on 200k+ recycling waste images.",
       "Built an automated DataOps and Human-in-the-Loop (HITL) pipeline with SAM-assisted auto-annotation and event-triggered retraining.",
       "Connected live inference outputs to Power BI dashboards for real-time contamination alerts and ESG reporting.",
     ],
     stack: ["Python", "YOLOv8m-seg", "SAM", "Power BI", "MLOps / HITL"],
+    liveUrl: "https://purityloop-ai.vercel.app/",
     featured: true,
   },
   {
@@ -56,6 +57,16 @@ const PROJECTS: Project[] = [
     liveUrl: "https://malas-money.vercel.app/",
   },
 ];
+
+const VENTURE = {
+  name: "SYNO SOLUTIONS",
+  role: "Founder · Product Distribution & Business Support",
+  location: "Malaysia",
+  summary:
+    "My own venture distributing selected InnoX technologies and providing practical business support for clients across Malaysia.",
+  tags: ["Technology Distribution", "InnoX", "Business Support", "Malaysia"],
+  url: "https://syno-solutions.vercel.app/",
+};
 
 export function Projects() {
   const featured = PROJECTS.find((p) => p.featured);
@@ -116,15 +127,29 @@ export function Projects() {
                 ))}
               </ul>
 
-              <div className="mt-6 flex flex-wrap items-center gap-2">
-                {featured.stack.map((tech) => (
-                  <span
-                    key={tech}
-                    className="rounded border border-border bg-secondary/60 px-2.5 py-1 font-mono text-xs text-foreground"
+              <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
+                <div className="flex flex-wrap items-center gap-2">
+                  {featured.stack.map((tech) => (
+                    <span
+                      key={tech}
+                      className="rounded border border-border bg-secondary/60 px-2.5 py-1 font-mono text-xs text-foreground"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                {featured.liveUrl && (
+                  <a
+                    href={featured.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors shrink-0"
                   >
-                    {tech}
-                  </span>
-                ))}
+                    Live Showcase
+                    <ArrowUpRight className="h-4 w-4" />
+                  </a>
+                )}
               </div>
             </motion.article>
           )}
@@ -193,6 +218,53 @@ export function Projects() {
               </motion.article>
             ))}
           </div>
+
+          <motion.article
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+            className="rounded-xl border border-border bg-card p-6 sm:p-8 transition-colors hover:border-foreground/25"
+          >
+            <div className="flex flex-wrap items-center justify-between gap-2 font-mono text-xs text-muted-foreground">
+              <span className="text-emerald-700 dark:text-emerald-400">
+                Venture · {VENTURE.role}
+              </span>
+              <span>{VENTURE.location}</span>
+            </div>
+
+            <div className="mt-3 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+              <div className="space-y-2 max-w-2xl">
+                <h3 className="text-xl font-semibold tracking-tight text-foreground">
+                  {VENTURE.name}
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {VENTURE.summary}
+                </p>
+              </div>
+
+              <a
+                href={VENTURE.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors shrink-0"
+              >
+                Visit Website
+                <ArrowUpRight className="h-4 w-4" />
+              </a>
+            </div>
+
+            <div className="mt-5 flex flex-wrap gap-1.5 border-t border-border pt-4">
+              {VENTURE.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="rounded border border-border bg-secondary/60 px-2.5 py-0.5 font-mono text-[11px] text-muted-foreground"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </motion.article>
         </div>
       </div>
     </section>
