@@ -78,7 +78,7 @@ export function Projects() {
         <div className="mb-12 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="font-mono text-xs uppercase tracking-wider text-emerald-700 dark:text-emerald-400">
-              01 / Selected Work
+              02 / Selected Work
             </p>
             <h2 className="mt-2 text-2xl sm:text-3xl font-semibold tracking-tight text-foreground">
               Projects &amp; Case Studies

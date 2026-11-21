@@ -5,32 +5,9 @@ import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { ArrowDownRight, FileText, Github, Linkedin, Mail } from "lucide-react";
 
-const QUICK_FACTS = [
-  {
-    label: "Education",
-    value: "B.A. Business Analytics",
-    detail: "Sunway University · 2026",
-  },
-  {
-    label: "Measured Impact",
-    value: "30–40% Faster Ops",
-    detail: "Power Apps & BI @ Rimbun Capital",
-  },
-  {
-    label: "Languages",
-    value: "5 Languages",
-    detail: "EN · ZH · MS · JA (N3) · TH",
-  },
-  {
-    label: "Focus",
-    value: "Analytics & Consulting",
-    detail: "Business, Data & Product Roles",
-  },
-];
-
 export function Hero() {
   return (
-    <section className="mx-auto max-w-5xl px-6 pt-16 pb-20 sm:pt-24 sm:pb-24">
+    <section className="mx-auto max-w-5xl px-6 pt-16 pb-16 sm:pt-24 sm:pb-20">
       <motion.div
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
@@ -90,48 +67,32 @@ export function Hero() {
             Contact
           </a>
 
-          <div className="flex items-center gap-1 sm:ml-auto">
+          <div className="flex items-center gap-2 sm:ml-auto">
             <a
               href="https://www.linkedin.com/in/chriswonglihong/"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="LinkedIn"
               className={cn(
-                buttonVariants({ size: "icon", variant: "ghost" }),
-                "h-9 w-9 text-muted-foreground hover:text-foreground"
+                buttonVariants({ size: "lg", variant: "outline" }),
+                "h-11 px-4 rounded-md text-sm font-medium gap-2 border-foreground/20 bg-card text-foreground hover:border-emerald-600/60 dark:hover:border-emerald-400/60"
               )}
             >
-              <Linkedin className="h-4 w-4" />
+              <Linkedin className="h-4 w-4 text-emerald-700 dark:text-emerald-400" />
+              LinkedIn
             </a>
             <a
               href="https://github.com/CreatifMind"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="GitHub"
               className={cn(
-                buttonVariants({ size: "icon", variant: "ghost" }),
-                "h-9 w-9 text-muted-foreground hover:text-foreground"
+                buttonVariants({ size: "lg", variant: "outline" }),
+                "h-11 px-4 rounded-md text-sm font-medium gap-2 border-foreground/20 bg-card text-foreground hover:border-emerald-600/60 dark:hover:border-emerald-400/60"
               )}
             >
-              <Github className="h-4 w-4" />
+              <Github className="h-4 w-4 text-emerald-700 dark:text-emerald-400" />
+              GitHub
             </a>
           </div>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-t border-b border-border divide-y sm:divide-y-0 sm:divide-x divide-border mt-12">
-          {QUICK_FACTS.map((fact) => (
-            <div key={fact.label} className="py-5 sm:px-5 first:sm:pl-0 last:sm:pr-0">
-              <p className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
-                {fact.label}
-              </p>
-              <p className="mt-1.5 text-sm font-semibold text-foreground">
-                {fact.value}
-              </p>
-              <p className="mt-0.5 text-xs text-muted-foreground">
-                {fact.detail}
-              </p>
-            </div>
-          ))}
         </div>
       </motion.div>
     </section>

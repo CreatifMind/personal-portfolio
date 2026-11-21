@@ -7,6 +7,7 @@ const EDUCATION = [
     degree: "Bachelor of Business Analytics",
     institution: "Sunway University, Sunway City",
     period: "Sep 2023 – Sep 2026",
+    highlight: "CGPA 3.36",
   },
   {
     degree: "1-Year Intensive Japanese Language Course",
@@ -26,7 +27,7 @@ export function About() {
       <div className="mx-auto max-w-5xl px-6">
         <div className="mb-12">
           <p className="font-mono text-xs uppercase tracking-wider text-emerald-700 dark:text-emerald-400">
-            04 / About &amp; Education
+            01 / About &amp; Education
           </p>
           <h2 className="mt-2 text-2xl sm:text-3xl font-semibold tracking-tight text-foreground">
             Background
@@ -65,10 +66,17 @@ export function About() {
                     key={edu.degree}
                     className="rounded-xl border border-border bg-card p-4"
                   >
-                    <p className="font-mono text-xs text-muted-foreground">
-                      {edu.period}
-                    </p>
-                    <p className="mt-1 text-sm font-semibold text-foreground">
+                    <div className="flex items-center justify-between gap-2">
+                      <p className="font-mono text-xs text-muted-foreground">
+                        {edu.period}
+                      </p>
+                      {edu.highlight && (
+                        <span className="rounded border border-emerald-600/30 bg-emerald-500/10 px-2 py-0.5 font-mono text-[11px] font-medium text-emerald-700 dark:text-emerald-400">
+                          {edu.highlight}
+                        </span>
+                      )}
+                    </div>
+                    <p className="mt-1.5 text-sm font-semibold text-foreground">
                       {edu.degree}
                     </p>
                     <p className="mt-0.5 text-xs text-muted-foreground">

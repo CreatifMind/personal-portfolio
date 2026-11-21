@@ -82,37 +82,37 @@ export function Contact() {
             © 2026 Chris Wong Lihong
           </p>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2.5">
             <a
               href="https://www.linkedin.com/in/chriswonglihong/"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="LinkedIn"
               className={cn(
-                buttonVariants({ variant: "ghost", size: "icon" }),
-                "h-9 w-9 text-muted-foreground hover:text-foreground"
+                buttonVariants({ variant: "outline", size: "sm" }),
+                "h-9 px-3 rounded-md text-xs font-medium gap-1.5 border-foreground/20 bg-card text-foreground hover:border-emerald-600/60 dark:hover:border-emerald-400/60"
               )}
             >
-              <Linkedin className="h-4 w-4" />
+              <Linkedin className="h-3.5 w-3.5 text-emerald-700 dark:text-emerald-400" />
+              LinkedIn
             </a>
             <a
               href="https://github.com/CreatifMind"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="GitHub"
               className={cn(
-                buttonVariants({ variant: "ghost", size: "icon" }),
-                "h-9 w-9 text-muted-foreground hover:text-foreground"
+                buttonVariants({ variant: "outline", size: "sm" }),
+                "h-9 px-3 rounded-md text-xs font-medium gap-1.5 border-foreground/20 bg-card text-foreground hover:border-emerald-600/60 dark:hover:border-emerald-400/60"
               )}
             >
-              <Github className="h-4 w-4" />
+              <Github className="h-3.5 w-3.5 text-emerald-700 dark:text-emerald-400" />
+              GitHub
             </a>
             <a
               href="#"
               aria-label="Back to top"
               className={cn(
                 buttonVariants({ variant: "outline", size: "icon" }),
-                "h-9 w-9 rounded-full ml-2"
+                "h-9 w-9 rounded-full ml-1"
               )}
             >
               <ArrowUp className="h-4 w-4" />

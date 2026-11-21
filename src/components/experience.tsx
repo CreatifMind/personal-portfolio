@@ -131,7 +131,7 @@ export function Experience() {
         <div className="mb-10 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="font-mono text-xs uppercase tracking-wider text-emerald-700 dark:text-emerald-400">
-              02 / Experience
+              03 / Experience
             </p>
             <h2 className="mt-2 text-2xl sm:text-3xl font-semibold tracking-tight text-foreground">
               Work &amp; International Ops

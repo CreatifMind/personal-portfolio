@@ -11,10 +11,10 @@ export default function Home() {
     <main className="min-h-screen font-sans selection:bg-emerald-200/70 dark:selection:bg-emerald-900/70 overflow-x-hidden">
       <Navbar />
       <Hero />
+      <About />
       <Projects />
       <Experience />
       <Skills />
-      <About />
       <Contact />
     </main>
   );

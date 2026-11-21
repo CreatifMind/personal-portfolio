@@ -51,7 +51,7 @@ export function Skills() {
       <div className="mx-auto max-w-5xl px-6">
         <div className="mb-12">
           <p className="font-mono text-xs uppercase tracking-wider text-emerald-700 dark:text-emerald-400">
-            03 / Skills &amp; Languages
+            04 / Skills &amp; Languages
           </p>
           <h2 className="mt-2 text-2xl sm:text-3xl font-semibold tracking-tight text-foreground">
             Toolkit &amp; Communication

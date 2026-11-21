@@ -7,10 +7,10 @@ import { ModeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 
 const NAV_LINKS = [
+  { href: "#about", label: "About" },
   { href: "#work", label: "Work" },
   { href: "#experience", label: "Experience" },
   { href: "#skills", label: "Skills" },
-  { href: "#about", label: "About" },
   { href: "#contact", label: "Contact" },
 ];
 
